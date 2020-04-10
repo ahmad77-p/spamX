@@ -1,0 +1,258 @@
+﻿const http = require("http");
+const express = require("express");
+const app = express();
+app.get("/", (request, response) => {
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`http://dv-ak.glitch.me/`);
+}, 280000);
+
+// كل البكجات الي ممكن تحتجها في اي بوت
+const { Client, RichEmbed } = require("discord.js");
+var { Util } = require("discord.js");
+const { TOKEN, YT_API_KEY, prefix, devs } = require("./config");
+const client = new Client({ disableEveryone: true });
+const ytdl = require("ytdl-core");
+const canvas = require("canvas");
+const Canvas = require("canvas");
+const convert = require("hh-mm-ss");
+const fetchVideoInfo = require("youtube-info");
+const botversion = require("./package.json").version;
+const simpleytapi = require("simple-youtube-api");
+const moment = require("moment");
+const fs = require("fs");
+const util = require("util");
+const gif = require("gif-search");
+const opus = require("node-opus");
+const ms = require("ms");
+const jimp = require("jimp");
+const { get } = require("snekfetch");
+const guild = require("guild");
+const dateFormat = require("dateformat"); //npm i dateformat
+const YouTube = require("simple-youtube-api");
+const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
+const hastebins = require("hastebin-gen");
+const getYoutubeID = require("get-youtube-id");
+const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
+const pretty = require("pretty-ms");
+client.login(TOKEN);
+const queue = new Map();
+var table = require("table").table;
+const Discord = require("discord.js");
+client.on("ready", () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on("ready", () => {
+  setInterval(function() {
+    let channel = client.channels.get("679243017999220736");
+    var facts = [
+      "سلام عليكم",
+      "هلا",
+      "وعليكم سلام",
+      "كيف حالك",
+      "بخير؟",
+      "الحمدلله",
+      "كفوووووو",
+      "مشكور",
+      "يا عبود",
+      "كل زق",
+      " نصاب",
+      "احبك",
+      "هلاااااااا والله",
+      "شخباركم",
+      "جيب الفلوس ينصاب",
+      "يعم ما اقدر اعطيك",
+      "لاااااااااا",
+      "بحبك",
+      "وانا كمان بموت فيك",
+      "بتحبني",
+      "لا بكرهك",
+      "سسسسسس",
+      "لا تسب يا ولد",
+      "يع مقرف",
+      "بسم الله الرحمن الرحيم",
+      "صدق الله العظيم",
+      "الي بحبني يحط ايدو بلي ببالو",
+      "كل خرا بحبكيش",
+      "لك انتا واحد ***",
+      "كل خر",
+      "هههههههههههههه",
+      "انتا واحد نصاب",
+      "يا زق",
+      "يا زق ههههه",
+      "عبود بحبك",
+      "يلعن اخت ديسكورد شو زفت",
+      "بحبك برو بوت بس عشان الكردي",
+      "بكرهك برو بوت",
+      "يلا يا بنات مين بحبني",
+      "تتزوجني",
+      "انتا تاع ولاد هههه",
+      "انتا محترف",
+      "انتا كوبي بيستر هههه",
+      "ولك امعطططططططط",
+      "كم شحنك حبيبي انا 1 انتا كم 10",
+      "واووووووووووووووووو",
+      "يالله شو حلو",
+      "ك* ا**",
+      "يا حرامي انتا 
+      "نصابين الله يلعنكم",
+      "ان شاء الله اموت و ارتاح من هل دنيا",
+      "يا رب تنحرق كل المدارس نرتاح من شرهم",
+      "ولك انتا واحد زفت مش عارف ليش",
+      "هههههههه ولك امعططططططط",
+      "مين بدو العبو ببجي عندي ببجي بتجنن",
+      "لا روح انقلع",
+      "بحبككككك ",
+      "بكرهكككك بدر",
+      "يلعنك شو كلب",
+      "لا تتخوت علي ولا ",
+      "يتعلم لغة الزق",
+      " واحد احم",
+      "هههه واحد احم",
+      "يالله شو حلو انتا",
+      "اخت شكلك زي هذاك الاشي",
+      "ولك بموت فيك انت بتموت فيي",
+      "ولك نفسي ابوسك بوسة تحلم فيها",
+      "يلا بوسني راح غمض عيوني",
+      "يوي بكرا عيد الحب",
+      "زعلانة مممم حبيبي تركني لانو ابن حرام",
+      "خجلتني يا",
+      "لا خلاص بخجلكيش",
+      "يلعن يزم زبطط حكيك ",
+      "لا تسبو يا ولاد حرام ",
+      "يلعنكم شو بتحكو هدو علينا شوي يا جماعة",
+      "تستهبل؟",
+      "لا تهايط",
+      "هلا بالعيال",
+      "يا عيني اسكت",
+      "لا تمنشن",
+      "بقولك ات تمنشن",
+      "تبي باند؟",
+      "اسكت لا تبلع ميوت",
+      "لا تسب",
+      "big كبير",
+      "right صحيح",
+      "old قديم",
+      "other اخر",
+      "own يملك",
+      "little قليل",
+      "great رائع",
+      "long طويل",
+      "last الماضي",
+      "first اول/أولا",
+      "new جديد",
+      "good جيد",
+      "call يدعو",
+      "leave يغادر",
+      "try يحاول",
+      "feel يحس",
+      "seem يبدو",
+      "work يعمل",
+      "ask يسأل",
+      "tell يخبر",
+      "find يكتشف",
+      "use يستعمل",
+      "give يمنح",
+      "want يريد",
+      "look يبحث",
+      "think يعتقد",
+      "come يأتي",
+      "see يشاهد",
+      "take يأخذ",
+      "know يعرف",
+      "go يذهب",
+      "make يجعل",
+      "get يحصل على",
+      "say ",
+      "do ",
+      "have ",
+      "be ",
+      "food ",
+      "fact ",
+      "problem ",
+      "group ",
+      "number ",
+      "company ",
+      "government ",
+      "point ",
+      "case ",
+      "week ",
+      "work ",
+      "place ",
+      "woman ",
+      "eye ",
+      "child ",
+      "part ",
+      "hand ",
+      "life ",
+      "world ",
+      "man ",
+      "thing ",
+      "day ",
+      "way ",
+      "year ",
+      "person ",
+      "time ؟؟",
+      "after بعد",
+      "over خلال",
+      "into إلى",
+      "about عن",
+      "up فوق",
+      "from من",
+      "by بواسطة",
+      "at في",
+      "with مع",
+      "on على",
+      "for لي",
+      "in في",
+      "of من",
+      "to إلى",
+      "next تالي",
+      "many بعض",
+      "able قادر",
+      "same نفس الشئ",
+      "bad سيئ",
+      "public عام",
+      "few بعض",
+      "important مهم",
+      "young صغير",
+      "early مبكر",
+      "large كبير",
+      "small صغير",
+      "different مختلف",
+      "high مرتفع"
+    ];
+    var fact = Math.floor(Math.random() * facts.length);
+    channel.send(facts[fact]);
+  }, 25000);
+});
+
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+  let args = message.content.split(" ").slice(1);
+  if (command == "c") {
+    message.channel.send(`c`);
+  }
+  if (command == "s") {
+    message.channel.send(args);
+  }
+  if (command == "d") {
+    message.channel.send(`#daily`);
+  }
+});
+
+const adminpriex = "r";
+const cmd = require("node-cmd");
+client.on("message", async message => {
+  if (message.author.id !== "679243017999220736") return;
+  if (message.content === adminpriex + "es") {
+    await cmd.run("refresh");
+    await message.channel.send("Done,");
+  }
+});
